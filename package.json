@@ -1,0 +1,37 @@
+{
+    "name": "twitchy",
+    "version": "1.0.0",
+    "description": "twitchy assignment for Sony Playstation application",
+    "main": "index.js",
+    "scripts": {
+        "app-clean": "npm cache clean",
+        "app-remove": "rm -rf ./node_modules",
+        "app-update": "npm run clean-build && npm update && bower prune && bower update --allow-root",
+    },
+    "watches": {
+        "markup": "src/index.html",
+        "js": "src/scripts/**",
+        "sass": "src/assets/sass/**",
+        "img": "src/assets/img/**",
+        "template": [
+            "src/templates/**",
+            "src/models/**"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://tachymetre@github.com/tachymetre/twitchy.git"
+    },
+    "keywords": [
+        "assignment",
+        "clean",
+        "functional",
+        "responsive"
+    ],
+    "author": "Minh Pham",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/tachymetre/twitchy/issues"
+    },
+    "homepage": "https://github.com/tachymetre/twitchy#readme"
+}
