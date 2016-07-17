@@ -6,17 +6,13 @@
     "scripts": {
         "app-clean": "npm cache clean",
         "app-remove": "rm -rf ./node_modules",
-        "app-update": "npm run clean-build && npm update && bower prune && bower update --allow-root",
+        "app-update": "npm update",
+        "serve": "live-server --port=9000 --quiet"
     },
     "watches": {
-        "markup": "src/index.html",
-        "js": "src/scripts/**",
-        "sass": "src/assets/sass/**",
-        "img": "src/assets/img/**",
-        "template": [
-            "src/templates/**",
-            "src/models/**"
-        ]
+        "markup": "index.html",
+        "js": "assets/js/**",
+        "css": "assets/css/**"
     },
     "repository": {
         "type": "git",
@@ -33,5 +29,8 @@
     "bugs": {
         "url": "https://github.com/tachymetre/twitchy/issues"
     },
-    "homepage": "https://github.com/tachymetre/twitchy#readme"
+    "homepage": "https://github.com/tachymetre/twitchy#readme",
+    "devDependencies": {
+        "live-server": "^1.0.0"
+    }
 }

@@ -1,25 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Twitchy">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Twitchy</title>
+    <!-- Custom stylings -->
     <link rel="stylesheet" type="text/css" href="assets/css/index.css">
 </head>
 
 <body>
-	<div id="content-wrapper">
-		<div id="stream-section" class="">
-			<div class="stream-header">
-				<input type="text" name="stream-query" placeholder="Search query...">
-				<button>Search</button>
-			</div>
-			<div class="stream-body">
-				
-			</div>
-		</div>
-	</div>
-	<!-- Custom scripts -->
-	<script type="text/javascript" src="assets/js/index.js"></script>
+    <div id="content-wrapper">
+        <div id="stream-section" class="">
+            <div class="stream-header">
+                <input class="search-input" type="text" name="stream-query" placeholder="Search query...">
+                <button>Search</button>
+            </div>
+            <div ></div>
+            <div class="stream-body">
+            	<ul id="stream-list"></ul>
+            </div>
+        </div>
+    </div>
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="assets/js/index.js"></script>
 </body>
 
 </html>
