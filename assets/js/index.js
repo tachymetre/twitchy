@@ -1,4 +1,6 @@
 window.onload = function() {
+    var defaultQuery = "starcraft"; // Default query variable
+
     // Setup and perform async service calls
     function loadData(url, callback) {
         var xhttp;
@@ -17,6 +19,13 @@ window.onload = function() {
         var streamData = JSON.parse(data.response);
         // Add in the total number of streams
         document.getElementById("total-stream").innerHTML = streamData._total;
+
+        // Clear the previous streams if exist
+        var unorderedList = document.getElementById("stream-list");
+        while(unorderedList.firstChild) {
+            unorderedList.removeChild(unorderedList.firstChild);
+        }
+
         // Process the stream data subsequently 
         streamData.streams.forEach(function(value, index) {
             if (value) {
@@ -79,10 +88,11 @@ window.onload = function() {
 
     // Create and append node elements into DOM
     function buildTemplateElement(DOMElementArray, levelObject) {
+        // Iterate through DOM elements to create nested level architecture
         for (var j = DOMElementArray.length - 1; j >= 0; j--) {
             var nodeClassName = DOMElementArray[j].className,
                 nodeName = DOMElementArray[j].nodeName.toLowerCase();
-                
+
             // Make sure the element exists in object before processing
             if (levelObject[nodeName]) {
                 for (var k = 0; k < DOMElementArray.length; k++) {
@@ -98,6 +108,21 @@ window.onload = function() {
         }
     }
 
-    // Retrieve the data streams from Twitch API
-    loadData("https://api.twitch.tv/kraken/search/streams?q=starcraft", displayData);
+    // Generate TwitchAPI URL nased on query
+    function searchStreamAction(searchQuery) {
+        // If there are space(s) in search query, replace with "%20" in Unicode
+        if (searchQuery.indexOf(" ") > -1) {
+            searchQuery = searchQuery.split(" ").join("%20");
+        }
+        return "https://api.twitch.tv/kraken/search/streams?q=" + searchQuery;
+    }
+
+    // Retrieve the default data streams from Starcraft Twitch API
+    loadData(searchStreamAction(defaultQuery), displayData);
+
+    // Add click event action to perform a search for the input query
+    document.getElementById("search-button").addEventListener("click", function() {
+        var inputValue = document.getElementById("search-input").value;
+        loadData(searchStreamAction(inputValue), displayData);
+    });
 }
