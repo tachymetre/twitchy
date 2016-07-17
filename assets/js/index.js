@@ -15,6 +15,9 @@ window.onload = function() {
     // Inject data from service calls to DOM
     function displayData(data) {
         var streamData = JSON.parse(data.response);
+        // Add in the total number of streams
+        document.getElementById("total-stream").innerHTML = streamData._total;
+        // Process the stream data subsequently 
         streamData.streams.forEach(function(value, index) {
             if (value) {
                 // Configure the element and structure for easy iterating list elements
@@ -53,7 +56,7 @@ window.onload = function() {
             if (elementArray[i] == 'img') {
                 element.setAttribute("src", content.preview.medium);
             } else if (elementArray[i] == 'span') {
-                element.innerHTML = content.viewers;
+                element.innerHTML = content.viewers + " viewers";
             }
 
             // Add in content for appropriate node elements
@@ -62,7 +65,7 @@ window.onload = function() {
                     element.innerHTML = content.channel.display_name;
                     break;
                 case 'game-name':
-                    element.innerHTML = content.game;
+                    element.innerHTML = content.game + " - ";
                     break;
                 case 'description':
                     element.innerHTML = content.channel.status;
