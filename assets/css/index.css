@@ -33,12 +33,29 @@
     border-bottom: 1px solid #000;
 }
 .search-input {
+    outline: none;
     padding: 3px;
     font-size: 13px;
     font-style: italic;
+    border: 1px solid #aaa;
 }
 .search-button {
-    padding: 5px 10px;
+	box-shadow: none;
+    padding: 4px 20px;
+    font-size: 13px;
+    color: #434343;
+    background-color: #e7e7e7;
+    border-color: #ccc;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
 }
 
 /*===================================
