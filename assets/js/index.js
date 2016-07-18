@@ -17,13 +17,15 @@ window.onload = function() {
     // Inject data from service calls to DOM
     function displayData(data) {
         var streamData = JSON.parse(data.response);
-        console.log(streamData);
         // Add in the total number of streams
         document.getElementById("total-stream").innerHTML = streamData._total;
 
+        // Invoke the navigation function to generate navigation page(s)
+        displayStreamNavigation(streamData);
+
         // Clear the previous streams if exist
         var unorderedList = document.getElementById("stream-list");
-        while(unorderedList.firstChild) {
+        while (unorderedList.firstChild) {
             unorderedList.removeChild(unorderedList.firstChild);
         }
 
@@ -118,8 +120,39 @@ window.onload = function() {
     }
 
     // Generate navigation items based on the stream content(s)
-    function displayStreamNavigation() {
-        
+    function displayStreamNavigation(elementData) {
+        var elementTotal = elementData._total,
+            eachPageElement = elementData.streams.length,
+            previousPageUrl = elementData._links.prev,
+            nextPageUrl = elementData._links.next;
+
+        var total;
+        var pageIndex;
+
+        console.log(elementTotal, eachPageElement);
+        console.log(elementData);
+
+        var navigationDisplay = document.getElementById("navigation-page");
+        total = (elementTotal % eachPageElement !== 0) ? (Math.floor(elementTotal / eachPageElement) + 1) : (elementTotal / eachPageElement);
+        pageIndex = 1;
+        console.log(total);
+
+        navigationDisplay.innerHTML = pageIndex + "/" + total; 
+
+        var previousLink = document.getElementById("previous-link");
+        var nextLink = document.getElementById("next-link");
+        previousLink.addEventListener("click", function() {
+            if (previousPageUrl) {
+                loadData(previousPageUrl, displayData);
+                pageIndex--;
+            }
+        });
+        nextLink.addEventListener("click", function() {
+            if (nextPageUrl) {
+                loadData(nextPageUrl, displayData);
+                pageIndex++;
+            }
+        });
     }
 
     // Retrieve the default data streams from Starcraft Twitch API
