@@ -4,8 +4,9 @@
  *
  */
 
+/* Media query for mobile devices (**SMALL**) */
 @media only screen and (max-device-width: 480px) {
-    
+
     /*----------  General Universal Stylings  ----------*/
 
     #stream-section {
@@ -25,6 +26,13 @@
     .stream-thumbnail {
         width: 240px;
         height: 135px;
+    }
+}
+
+/* Media query for mobile devices (**MEDIUM**) */
+@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+    #stream-section {
+        width: 90%;
     }
 }
 
