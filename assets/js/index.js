@@ -121,36 +121,40 @@ window.onload = function() {
 
     // Generate navigation items based on the stream content(s)
     function displayStreamNavigation(elementData) {
-        var elementTotal = elementData._total,
+        var total,
+            pageIndex,
+            elementTotal = elementData._total,
             eachPageElement = elementData.streams.length,
             previousPageUrl = elementData._links.prev,
             nextPageUrl = elementData._links.next;
 
-        var total;
-        var pageIndex;
+        var navigationDisplay = document.getElementById("navigation-page"),
+            previousLink = document.getElementById("previous-link"),
+            nextLink = document.getElementById("next-link");
 
-        console.log(elementTotal, eachPageElement);
-        console.log(elementData);
-
-        var navigationDisplay = document.getElementById("navigation-page");
         total = (elementTotal % eachPageElement !== 0) ? (Math.floor(elementTotal / eachPageElement) + 1) : (elementTotal / eachPageElement);
-        pageIndex = 1;
-        console.log(total);
 
-        navigationDisplay.innerHTML = pageIndex + "/" + total; 
+        if (!previousPageUrl) {
+            pageIndex = 1;
+            localStorage.setItem("pageIndex", pageIndex);
+        } else {
+            pageIndex = parseInt(localStorage.getItem("pageIndex"));
+        }
 
-        var previousLink = document.getElementById("previous-link");
-        var nextLink = document.getElementById("next-link");
+        navigationDisplay.innerHTML = pageIndex + "/" + total;
+
         previousLink.addEventListener("click", function() {
             if (previousPageUrl) {
+                pageIndex = pageIndex - 1;
+                localStorage.setItem("pageIndex", pageIndex);
                 loadData(previousPageUrl, displayData);
-                pageIndex--;
             }
         });
         nextLink.addEventListener("click", function() {
             if (nextPageUrl) {
+                pageIndex = pageIndex + 1;
+                localStorage.setItem("pageIndex", pageIndex);
                 loadData(nextPageUrl, displayData);
-                pageIndex++;
             }
         });
     }
