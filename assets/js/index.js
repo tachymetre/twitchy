@@ -129,8 +129,10 @@ window.onload = function() {
             previousLink = document.getElementById("previous-link"),
             nextLink = document.getElementById("next-link");
 
+        // Calculate the total page(s) needed for all the stream data
         total = (elementTotal % eachPageElement !== 0) ? (Math.floor(elementTotal / eachPageElement) + 1) : (elementTotal / eachPageElement);
 
+        // If on the first page then set the page index to default value, otherwise retrieve it
         if (!previousPageUrl) {
             pageIndex = 1;
             localStorage.setItem("pageIndex", pageIndex);
@@ -138,18 +140,20 @@ window.onload = function() {
             pageIndex = parseInt(localStorage.getItem("pageIndex"));
         }
 
+        // Display the navigation indicator
         navigationDisplay.innerHTML = pageIndex + "/" + total;
 
+        // Add in event handler(s) for navigation action
         previousLink.addEventListener("click", function() {
             if (previousPageUrl) {
-                pageIndex = pageIndex - 1;
+                pageIndex--;
                 localStorage.setItem("pageIndex", pageIndex);
                 loadData(previousPageUrl, displayData);
             }
         });
         nextLink.addEventListener("click", function() {
             if (nextPageUrl) {
-                pageIndex = pageIndex + 1;
+                pageIndex++;
                 localStorage.setItem("pageIndex", pageIndex);
                 loadData(nextPageUrl, displayData);
             }
