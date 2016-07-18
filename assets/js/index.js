@@ -21,7 +21,7 @@ window.onload = function() {
         document.getElementById("total-stream").innerHTML = streamData._total;
 
         // Invoke the navigation function to generate navigation page(s)
-        displayStreamNavigation(streamData);
+        displayStreamNavigation(streamData._total, streamData.streams.length, streamData._links.prev, streamData._links.next);
 
         // Clear the previous streams if exist
         var unorderedList = document.getElementById("stream-list");
@@ -122,15 +122,10 @@ window.onload = function() {
     }
 
     // Generate navigation items based on the stream content(s)
-    function displayStreamNavigation(elementData) {
+    function displayStreamNavigation(elementTotal, eachPageElement, previousPageUrl, nextPageUrl) {
         var total,
             pageIndex,
-            elementTotal = elementData._total,
-            eachPageElement = elementData.streams.length,
-            previousPageUrl = elementData._links.prev,
-            nextPageUrl = elementData._links.next;
-
-        var navigationDisplay = document.getElementById("navigation-page"),
+            navigationDisplay = document.getElementById("navigation-page"),
             previousLink = document.getElementById("previous-link"),
             nextLink = document.getElementById("next-link");
 
