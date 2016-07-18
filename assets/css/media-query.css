@@ -5,22 +5,23 @@
  */
 
 @media only screen and (max-device-width: 480px) {
-
     /*----------  General Universal Stylings  ----------*/
-
     #stream-section {
         width: 90%;
     }
+    /*===================================
+    =            STREAM BODY            =
+    ===================================*/
     .stream-content {
-    	text-align: center;
+        text-align: center;
     }
     .stream-section {
-    	width: 100%;
-    	margin: 0;
+        width: 100%;
+        margin: 0;
     }
     .stream-thumbnail {
-    	width: 240px;
-    	height: 135px;
+        width: 240px;
+        height: 135px;
     }
 }
 
