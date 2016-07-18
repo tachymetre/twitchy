@@ -1,4 +1,4 @@
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
     var defaultQuery = "starcraft"; // Default query variable
 
     // Setup and perform async service calls
@@ -66,9 +66,7 @@ window.onload = function() {
 
             // Add in source for image or viewer counts for span
             if (elementArray[i] == 'img') {
-                // Add in custom preview image size for better UI
-                var customPreviewUrl = content.preview.template.replace(/{width}/i, '160').replace(/{height}/i, '90');
-                element.setAttribute("src", customPreviewUrl);
+                element.setAttribute("src", content.preview.medium);
             } else if (elementArray[i] == 'span') {
                 element.innerHTML = content.viewers + " viewers";
             }
@@ -168,4 +166,4 @@ window.onload = function() {
         var inputValue = document.getElementById("search-input").value;
         loadData(searchStreamAction(inputValue), displayData);
     });
-}
+});

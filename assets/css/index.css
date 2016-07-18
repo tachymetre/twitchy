@@ -107,6 +107,10 @@ a {
     position: relative;
     margin: 10px 0;
 }
+.stream-thumbnail {
+    width: 160px;
+    height: 90px;
+}
 .stream-section {
     width: 65%;
     display: inline-block;
