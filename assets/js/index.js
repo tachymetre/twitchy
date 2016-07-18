@@ -66,7 +66,9 @@ window.onload = function() {
 
             // Add in source for image or viewer counts for span
             if (elementArray[i] == 'img') {
-                element.setAttribute("src", content.preview.medium);
+                // Add in custom preview image size for better UI
+                var customPreviewUrl = content.preview.template.replace(/{width}/i, '160').replace(/{height}/i, '90');
+                element.setAttribute("src", customPreviewUrl);
             } else if (elementArray[i] == 'span') {
                 element.innerHTML = content.viewers + " viewers";
             }

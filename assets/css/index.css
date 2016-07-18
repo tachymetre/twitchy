@@ -108,6 +108,7 @@ a {
     margin: 10px 0;
 }
 .stream-section {
+    width: 65%;
     display: inline-block;
     vertical-align: top;
     margin-left: 20px;
