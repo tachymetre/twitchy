@@ -69,7 +69,7 @@
 }
 
 /* Media query for mobile devices (**MEDIUM**) */
-@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+@media only screen and (min-device-width: 481px) and (max-device-width: 930px) {
 
     /*----------  General Universal Stylings  ----------*/
 
