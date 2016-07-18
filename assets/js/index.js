@@ -17,6 +17,7 @@ window.onload = function() {
     // Inject data from service calls to DOM
     function displayData(data) {
         var streamData = JSON.parse(data.response);
+        console.log(streamData);
         // Add in the total number of streams
         document.getElementById("total-stream").innerHTML = streamData._total;
 
@@ -80,7 +81,6 @@ window.onload = function() {
                     element.innerHTML = content.channel.status;
                     break;
             }
-
             templateArray.push(element);
         }
         buildTemplateElement(templateArray, DOMLevel);
@@ -115,6 +115,11 @@ window.onload = function() {
             searchQuery = searchQuery.split(" ").join("%20");
         }
         return "https://api.twitch.tv/kraken/search/streams?q=" + searchQuery;
+    }
+
+    // Generate navigation items based on the stream content(s)
+    function displayStreamNavigation() {
+        
     }
 
     // Retrieve the default data streams from Starcraft Twitch API
