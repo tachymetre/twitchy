@@ -5,7 +5,12 @@
  */
 
 @media only screen and (max-device-width: 480px) {
-	
+
+    /*----------  General Universal Stylings  ----------*/
+
+    #stream-section {
+        width: 90%;
+    }
 }
 
 /*=====  End of media-query.css  ======*/
