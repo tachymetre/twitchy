@@ -147,7 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleNavigationUrl(requestUrl, direction, pageIndex) {
-        console.log(requestUrl);
         if (requestUrl) {
             pageIndex = (direction == "previous") ? pageIndex - 1 : pageIndex + 1;
             localStorage.setItem("pageIndex", pageIndex);
