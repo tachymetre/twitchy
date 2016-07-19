@@ -43,6 +43,9 @@ Boot up a local server for live editing
 npm run serve
 ```
 
+## Default State
+By default, the web application will show streams from the game "StarCraft" when first loaded. User can search for a game name in the query box and results will display accordingly
+
 ## Version
 1.0.0
 
