@@ -146,14 +146,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (previousPageUrl) {
                 pageIndex--;
                 localStorage.setItem("pageIndex", pageIndex);
-                loadData(previousPageUrl, displayData);
+                loadJSONPData(previousPageUrl, displayData);
             }
         });
         nextLink.addEventListener("click", function() {
             if (nextPageUrl) {
                 pageIndex++;
                 localStorage.setItem("pageIndex", pageIndex);
-                loadData(nextPageUrl, displayData);
+                loadJSONPData(nextPageUrl, displayData);
             }
         });
     }
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var inputValue = document.getElementById("search-input").value;
         // Make sure input not empty before making service call
         if (inputValue) {
-            loadData(searchStreamAction(inputValue), displayData);
+            loadJSONPData(searchStreamAction(inputValue), displayData);
         }
     });
 });
