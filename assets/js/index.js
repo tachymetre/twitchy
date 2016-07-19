@@ -142,20 +142,17 @@ document.addEventListener('DOMContentLoaded', function() {
         navigationDisplay.innerHTML = pageIndex + "/" + total;
 
         // Add in event handler(s) for navigation action
-        previousLink.addEventListener("click", function() {
-            if (previousPageUrl) {
-                pageIndex--;
-                localStorage.setItem("pageIndex", pageIndex);
-                loadJSONPData(previousPageUrl, displayData);
-            }
-        });
-        nextLink.addEventListener("click", function() {
-            if (nextPageUrl) {
-                pageIndex++;
-                localStorage.setItem("pageIndex", pageIndex);
-                loadJSONPData(nextPageUrl, displayData);
-            }
-        });
+        previousLink.addEventListener("click", handleNavigationUrl.bind(null, previousPageUrl, "previous", pageIndex), false);
+        nextLink.addEventListener("click", handleNavigationUrl.bind(null, nextPageUrl, "next", pageIndex), false);
+    }
+
+    function handleNavigationUrl(requestUrl, direction, pageIndex) {
+        console.log(requestUrl);
+        if (requestUrl) {
+            pageIndex = (direction == "previous") ? pageIndex - 1 : pageIndex + 1;
+            localStorage.setItem("pageIndex", pageIndex);
+            loadJSONPData(requestUrl, displayData);
+        }
     }
 
     // Retrieve the default data streams from Starcraft Twitch API
