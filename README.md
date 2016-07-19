@@ -19,6 +19,18 @@ If you use homebrew, do:
 brew install node
 ```
 
+Clean all dependencies cache, if any
+
+```
+npm run app-clean
+```
+
+Remove `node_modules` folder for a fresh build
+
+```
+npm run app-remove
+```
+
 Install all the needed development dependencies
 
 ```
