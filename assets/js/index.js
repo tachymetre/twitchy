@@ -1,22 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     var defaultQuery = "starcraft"; // Default query variable
 
-    // Setup and perform async service calls
-    function loadData(url, callback) {
-        var xhttp;
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-                callback(xhttp);
-            }
+    // Setup and and interact with Twitch API using JSONP
+    function loadJSONPData(url, callback) {
+        var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+        window[callbackName] = function(data) {
+            delete window[callbackName];
+            document.body.removeChild(script);
+            callback(data);
         };
-        xhttp.open("GET", url, true);
-        xhttp.send();
+
+        var script = document.createElement('script');
+        script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
+        document.body.appendChild(script);
     }
 
     // Inject data from service calls to DOM
-    function displayData(data) {
-        var streamData = JSON.parse(data.response);
+    function displayData(streamData) {
         // Add in the total number of streams
         document.getElementById("total-stream").innerHTML = streamData._total;
 
@@ -159,11 +159,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Retrieve the default data streams from Starcraft Twitch API
-    loadData(searchStreamAction(defaultQuery), displayData);
+    loadJSONPData(searchStreamAction(defaultQuery), displayData);
 
     // Add click event action to perform a search for the input query
     document.getElementById("search-button").addEventListener("click", function() {
         var inputValue = document.getElementById("search-input").value;
-        loadData(searchStreamAction(inputValue), displayData);
+        // Make sure input not empty before making service call
+        if (inputValue) {
+            loadData(searchStreamAction(inputValue), displayData);
+        }
     });
 });
