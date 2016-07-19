@@ -2,25 +2,37 @@
 <html lang="en">
 
 <head>
+    <!-- Standard Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Twitchy">
+    <meta name="keywords" content="clean, functional, responsive" />
+    <meta name="robots" content="noodp,noydir" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Site Properities -->
     <title>Twitchy</title>
-    <!-- Custom stylings -->
+    <!-- Add in stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/index.css">
+    <!-- Add in media query for mobile devices -->
     <link rel="stylesheet" type="text/css" href="assets/css/media-query.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
     <div id="content-wrapper">
         <div id="stream-section" class="">
+            <!-- stream ead module -->
             <div class="stream-header">
                 <input id="search-input" class="search-input" type="text" name="stream-query" placeholder="Search query...">
                 <button id="search-button" class="search-button">Search</button>
             </div>
+            <!-- stream body module -->
             <div class="stream-body">
+                <!-- display total number of results -->
                 <p class="stream-total">Total results: <span id="total-stream"></span></p>
+                <!-- generate navigation for stream results -->
                 <section class="stream-navigation">
                     <a id="previous-link" class="navigation-link">
                         <span class="previous-stream"></span>
@@ -30,11 +42,12 @@
                         <span class="next-stream"></span>
                     </a>
                 </section>
+                <!-- build template and inject data into list -->
                 <ul id="stream-list"></ul>
             </div>
         </div>
     </div>
-    <!-- Custom scripts -->
+    <!-- Add in custom scripts for application requirements -->
     <script type="text/javascript" src="assets/js/index.js"></script>
 </body>
 
